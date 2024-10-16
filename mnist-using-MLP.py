@@ -25,3 +25,5 @@ for index, (image, label) in enumerate(zip(X_train[0:3], y_train[0:3])):
     plt.subplot(1, 3, index + 1)
     plt.imshow(np.reshape(image, (28, 28)), cmap=plt.cm.gray)
     plt.title("Label: %s\n" % label, fontsize=20)
+    plt.show()
+
