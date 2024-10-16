@@ -3,6 +3,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
+from sklearn.neural_network import MLPClassifier
+
 
 # Load data from https://www.openml.org/d/554
 X, y = fetch_openml("mnist_784", version=1, return_X_y=True, parser="auto")
@@ -25,5 +27,20 @@ for index, (image, label) in enumerate(zip(X_train[0:3], y_train[0:3])):
     plt.subplot(1, 3, index + 1)
     plt.imshow(np.reshape(image, (28, 28)), cmap=plt.cm.gray)
     plt.title("Label: %s\n" % label, fontsize=20)
-    plt.show()
+    # plt.show()
 
+
+# Create an MLPClassifier object
+mlp = MLPClassifier(
+    hidden_layer_sizes=(50,),
+    max_iter=10,
+    alpha=1e-4,
+    solver="sgd",
+    verbose=10,
+    random_state=1,
+    learning_rate_init=0.1,
+)
+
+
+# Train the MLPClassifier
+mlp.fit(X_train, y_train)
